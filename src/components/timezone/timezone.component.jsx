@@ -16,7 +16,6 @@ function Timezone() {
       let zones = response.data.zones;
       setZoneList(zones);
       //   setCurrentZone(zones[0].zoneName);
-      console.log(zones);
     };
     getList();
   }, []);
@@ -28,7 +27,6 @@ function Timezone() {
         let response = await axios.get(
           `https://api.timezonedb.com/v2/get-time-zone?key=XWSLLPX5RMIZ&format=json&by=zone&zone=${currentZone}`
         );
-        console.log(response.data.formatted);
         setCurrentTime(response.data.formatted);
       };
       getZoneData();
