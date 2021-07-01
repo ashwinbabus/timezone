@@ -11,7 +11,7 @@ function Timezone() {
   useEffect(() => {
     const getList = async () => {
       let response = await axios.get(
-        "http://api.timezonedb.com/v2.1/list-time-zone?key=XWSLLPX5RMIZ&format=json&zone=Europe/*"
+        "https://api.timezonedb.com/v2.1/list-time-zone?key=XWSLLPX5RMIZ&format=json&zone=Europe/*"
       );
       let zones = response.data.zones;
       setZoneList(zones);
@@ -26,7 +26,7 @@ function Timezone() {
     timer.current = setInterval(() => {
       const getZoneData = async () => {
         let response = await axios.get(
-          `http://api.timezonedb.com/v2/get-time-zone?key=XWSLLPX5RMIZ&format=json&by=zone&zone=${currentZone}`
+          `https://api.timezonedb.com/v2/get-time-zone?key=XWSLLPX5RMIZ&format=json&by=zone&zone=${currentZone}`
         );
         console.log(response.data.formatted);
         setCurrentTime(response.data.formatted);
