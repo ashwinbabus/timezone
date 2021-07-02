@@ -37,7 +37,6 @@ function Timezone() {
   }, [currentZone]);
 
   const handleZoneChange = (e) => {
-    console.log(e.target.value);
     setCurrentZone(e.target.value);
   };
 
