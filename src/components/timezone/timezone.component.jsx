@@ -4,7 +4,7 @@ import axios from "axios";
 
 function Timezone() {
   const [zoneList, setZoneList] = useState([]);
-  const [currentZone, setCurrentZone] = useState("Europe/Andorra");
+  const [currentZone, setCurrentZone] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   let timer = useRef();
 
@@ -15,7 +15,7 @@ function Timezone() {
       );
       let zones = response.data.zones;
       setZoneList(zones);
-      //   setCurrentZone(zones[0].zoneName);
+      setCurrentZone(zones[0].zoneName);
     };
     getList();
   }, []);
@@ -43,7 +43,11 @@ function Timezone() {
   return (
     <div className="timezone__container">
       <select name="zones" id="" onChange={(e) => handleZoneChange(e)}>
-        {zoneList && zoneList.map((zone) => <option>{zone.zoneName}</option>)}
+        {zoneList.length ? (
+          zoneList.map((zone) => <option>{zone.zoneName}</option>)
+        ) : (
+          <option>...</option>
+        )}
       </select>
       <h1>{currentTime === "" ? "loading ..." : currentTime} </h1>
     </div>
