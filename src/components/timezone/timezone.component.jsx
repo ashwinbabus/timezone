@@ -10,12 +10,17 @@ function Timezone() {
 
   useEffect(() => {
     const getList = async () => {
-      let response = await axios.get(
-        "https://api.timezonedb.com/v2.1/list-time-zone?key=XWSLLPX5RMIZ&format=json&zone=Europe/*"
-      );
-      let zones = response.data.zones;
-      setZoneList(zones);
-      setCurrentZone(zones[0].zoneName);
+      let response;
+      try {
+        response = await axios.get(
+          "https://api.timezonedb.com/v2.1/list-time-zone?key=XWSLLPX5RMIZ&format=json&zone=Europe/*"
+        );
+        let zones = response.data.zones;
+        setZoneList(zones);
+        setCurrentZone(zones[0].zoneName);
+      } catch (error) {
+        console.error(error);
+      }
     };
     getList();
   }, []);
